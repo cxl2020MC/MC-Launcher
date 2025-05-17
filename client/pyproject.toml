@@ -8,5 +8,6 @@ dependencies = [
     "aiofiles",
     "aiohttp",
     "nuitka",
+    "pydantic",
     "pywebview",
 ]
