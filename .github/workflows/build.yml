@@ -34,11 +34,9 @@ jobs:
                   cd web
                   pnpm build
             - name: 构建二进制文件
-              uses: Nuitka/Nuitka-Action@main
-              with:
-                nuitka-version: main
-                script-name: client/main.py
-                mode: app
+              run: |
+                  cd client
+                  uv run build.py
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
               with:
