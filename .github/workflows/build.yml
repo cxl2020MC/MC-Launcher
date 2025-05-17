@@ -41,5 +41,5 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ runner.os }}
-                  path: build/hello_world.exe
+                  path: *.exe
                   include-hidden-files: true
