@@ -10,11 +10,11 @@ jobs:
               uses: astral-sh/setup-uv@v5
               with:
                 enable-cache: true
-            - name: "Set up Python"
-              uses: actions/setup-python@v5
-              with:
-                  python-version-file: ".python-version"
+            - name: 设置 Python
+              run: uv python install
             - name: 安装依赖
-              run: "uv sync"
+              run: |
+                cd cliemt
+                uv sync
             - name: 构建二进制文件
               run: "uv run build.py"

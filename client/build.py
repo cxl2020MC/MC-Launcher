@@ -6,7 +6,7 @@ print(f'当前工作目录：{os.getcwd()}')
 
 print('切换工作目录到web')
 
-os.chdir('web')
+os.chdir('../web')
 print(f'当前工作目录：{os.getcwd()}')
 
 print('开始构建前端')
