@@ -16,12 +16,19 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: latest
+                  cache: 'pnpm'
             - name: 安装 pnpm
               uses: pnpm/action-setup@v4
-            - name: 安装依赖
+                with:
+                    version: latest
+            - name: 安装后端依赖
               run: |
                   cd client
                   uv sync
+            - name: 安装前端依赖
+                run: |
+                    cd web
+                    pnpm install
             - name: 构建二进制文件
               run: |
                   cd client
