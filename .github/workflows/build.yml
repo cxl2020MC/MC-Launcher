@@ -3,6 +3,9 @@ on: [push]
 jobs:
     windows:
         runs-on: windows-latest
+        env:
+            PYTHONIOENCODING: utf-8
+            LC_ALL: zh_CN.UTF-8
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
