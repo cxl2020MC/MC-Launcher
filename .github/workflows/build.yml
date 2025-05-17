@@ -1,7 +1,7 @@
 name: 构建二进制文件
 on: [push]
 jobs:
-    Explore-GitHub-Actions:
+    windows:
         runs-on: windows-latest
         steps:
             - name: 检出仓库代码
@@ -41,5 +41,5 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ runner.os }}
-                  path: *.exe
+                  path: "*.exe"
                   include-hidden-files: true
