@@ -40,5 +40,5 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ runner.os }}
-                  path: "*.exe"
+                  path: "client/*.exe"
                   include-hidden-files: true
