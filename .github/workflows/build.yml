@@ -26,7 +26,7 @@ jobs:
                   cd client
                   uv sync
             - name: 安装前端依赖
-                run: |
+              run: |
                     cd web
                     pnpm install
             - name: 构建二进制文件
