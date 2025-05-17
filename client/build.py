@@ -2,8 +2,8 @@ import os
 import shutil
 import subprocess
 
-import sys
-sys.stdout.reconfigure(encoding='utf-8')
+# import sys
+# sys.stdout.reconfigure(encoding='utf-8')
 
 
 print(f'当前工作目录：{os.getcwd()}')
