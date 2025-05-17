@@ -9,6 +9,7 @@ jobs:
         env:
             PYTHONIOENCODING: utf-8
             # LC_ALL: zh_CN.UTF-8
+            NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
@@ -36,6 +37,14 @@ jobs:
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
+            - name: 缓存Nuitka缓存
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.NUITKA_CACHE_DIR }}
+                  key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-${{ runner.arch }}-nuitka-
+                      ${{ runner.os }}-${{ runner.arch }}-
             - name: 构建二进制文件
               working-directory: client
               run: uv run build.py
