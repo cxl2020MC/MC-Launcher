@@ -24,7 +24,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: latest
-                #   cache: "pnpm"
+                  cache: "pnpm"
             - name: 安装后端依赖
               run: |
                   cd client
