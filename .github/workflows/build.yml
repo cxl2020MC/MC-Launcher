@@ -1,7 +1,7 @@
 name: 构建二进制文件
 on: [push]
 jobs:
-    windows:
+    build:
         strategy:
             matrix:
                 os: [macos-latest, ubuntu-latest, windows-latest]
