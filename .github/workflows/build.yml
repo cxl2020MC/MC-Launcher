@@ -17,4 +17,6 @@ jobs:
                 cd client
                 uv sync
             - name: 构建二进制文件
-              run: "uv run build.py"
+              run: |
+                cd client
+                uv run build.py
