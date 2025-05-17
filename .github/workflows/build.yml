@@ -29,13 +29,11 @@ jobs:
                   cd client
                   uv sync
             - name: 安装前端依赖
-              run: |
-                  cd web
-                  pnpm install
+              working-directory: web
+              run: pnpm install
             - name: 构建二进制文件
-              run: |
-                  cd client
-                  uv run build.py
+              working-directory: client
+              run: uv run build.py
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
               with:
