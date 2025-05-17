@@ -29,10 +29,6 @@ jobs:
               run: |
                   cd web
                   pnpm install
-            - name: 构建前端
-              run: |
-                  cd web
-                  pnpm build
             - name: 构建二进制文件
               run: |
                   cd client

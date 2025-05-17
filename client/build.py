@@ -35,7 +35,7 @@ shutil.rmtree('dist', ignore_errors=True)
 print('开始构建客户端')
 
 subprocess.run(['nuitka', '--onefile', 'app.py',
-               '--include-data-dir=../web/dist=dist', ' --assume-yes-for-downloads'], shell=True)
+               '--include-data-dir=../web/dist=dist', '--assume-yes-for-downloads'], shell=True)
 # subprocess.run(['nuitka', '--mode=standalone', 'app.py', '--include-data-dir=../web/dist=dist'], shell=True)
 
 
