@@ -2,10 +2,13 @@ name: 构建二进制文件
 on: [push]
 jobs:
     windows:
-        runs-on: windows-latest
+        strategy:
+            matrix:
+                os: [macos-latest, ubuntu-latest, windows-latest]
+        runs-on: ${{ matrix.os }}
         env:
             PYTHONIOENCODING: utf-8
-            LC_ALL: zh_CN.UTF-8
+            # LC_ALL: zh_CN.UTF-8
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
