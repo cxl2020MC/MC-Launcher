@@ -6,8 +6,9 @@ import platform
 
 shell = True
 print('当前操作系统：', platform.system())
-if platform.system() == 'Windows':
+if platform.system() != 'Windows':
     print("关闭shell=True")
+    shell = False
 
 
 
