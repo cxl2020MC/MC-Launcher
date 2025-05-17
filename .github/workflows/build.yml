@@ -14,7 +14,7 @@ jobs:
               run: uv python install
             - name: 安装依赖
               run: |
-                cd cliemt
+                cd client
                 uv sync
             - name: 构建二进制文件
               run: "uv run build.py"
