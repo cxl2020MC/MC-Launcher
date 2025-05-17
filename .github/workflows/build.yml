@@ -10,6 +10,9 @@ jobs:
         env:
             PYTHONIOENCODING: utf-8
             # LC_ALL: zh_CN.UTF-8
+            # NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
+            NUITKA_CACHE_DIR: ${{ runner.temp }}/nuitka/cache
+
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
@@ -40,8 +43,6 @@ jobs:
             - name: 构建前端
               working-directory: web
               run: pnpm build
-            - name: 设置 Nuitka 缓存目录
-              run: echo "NUITKA_CACHE_DIR=${{ github.action_path }}/nuitka/cache" >> $GITHUB_ENV
             - name: 缓存Nuitka缓存
               uses: actions/cache@v4
               with:
