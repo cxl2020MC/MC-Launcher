@@ -54,10 +54,17 @@ jobs:
             - name: 构建二进制文件
               working-directory: client
             #   run: uv run build.py
-              run: uvx --from nuitka nuitka.cwd --onefile app.py --include-data-dir=../web/dist=dist --assume-yes-for-downloads
+              run: |
+                if [ "${{ matrix.os }}" == "windows-latest" ]; then
+                    uvx --from nuitka nuitka.cwd --onefile app.py --include-data-dir=../web/dist=dist --assume-yes-for-downloads
+                else:
+                    uvx nuitka --onefile app.py --include-data-dir=../web/dist=dist --assume-yes-for-downloads
+
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ runner.os }}
-                  path: "client/*.exe"
+                  path: |
+                    client/app.*
+                    !client/app.py
                   include-hidden-files: true
