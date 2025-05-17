@@ -51,14 +51,10 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-${{ runner.arch }}-nuitka-
                       ${{ runner.os }}-${{ runner.arch }}-
+            
             - name: 构建二进制文件
               working-directory: client
-            #   run: uv run build.py
-              run: |
-                if [ "${{ matrix.os }}" == "windows-latest" ]; then
-                    uvx --from nuitka nuitka.cwd --onefile app.py --include-data-dir=../web/dist=dist --assume-yes-for-downloads
-                else:
-                    uvx nuitka --onefile app.py --include-data-dir=../web/dist=dist --assume-yes-for-downloads
+              run: uv run build.py
 
             - name: 上传构建产物
               uses: actions/upload-artifact@v4

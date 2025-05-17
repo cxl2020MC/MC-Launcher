@@ -1,6 +1,14 @@
 import os
 import shutil
 import subprocess
+import platform
+
+
+shell = True
+print('当前操作系统：', platform.system())
+if platform.system() == 'Windows':
+    print("关闭shell=True")
+
 
 
 print(f'当前工作目录：{os.getcwd()}')
@@ -12,7 +20,7 @@ print(f'当前工作目录：{os.getcwd()}')
 
 print('开始构建前端')
 
-subprocess.run(['pnpm', 'build'], shell=True)
+subprocess.run(['pnpm', 'build'], shell=shell)
 
 print('切换工作目录到client')
 
@@ -32,7 +40,7 @@ shutil.rmtree('dist', ignore_errors=True)
 print('开始构建客户端')
 
 subprocess.run(['nuitka', '--onefile', 'app.py',
-               '--include-data-dir=../web/dist=dist', '--assume-yes-for-downloads'], shell=True)
+               '--include-data-dir=../web/dist=dist', '--assume-yes-for-downloads'], shell=shell)
 # subprocess.run(['nuitka', '--mode=standalone', 'app.py', '--include-data-dir=../web/dist=dist'], shell=True)
 
 
