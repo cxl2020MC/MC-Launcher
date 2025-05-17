@@ -61,6 +61,5 @@ jobs:
               with:
                   name: ${{ runner.os }}
                   path: |
-                    client/app.*
-                    !client/app.py
+                    client/nuitka_dist/
                   include-hidden-files: true
