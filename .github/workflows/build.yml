@@ -37,6 +37,10 @@ jobs:
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
+            - name: 安装后端Linux特定依赖
+              if: matrix.os == 'ubuntu-latest'
+              working-directory: client
+              run: uv add pywebview[GTK]
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
