@@ -61,7 +61,8 @@ jobs:
             
             - name: 构建二进制文件
               working-directory: client
-              run: uv run build.py
+              # run: uv run build.py
+              run: nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
 
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
