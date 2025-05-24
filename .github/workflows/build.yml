@@ -12,7 +12,8 @@ jobs:
             # LC_ALL: zh_CN.UTF-8
             # NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
             NUITKA_CACHE_DIR: ./_temp/nuitka/cache
-
+            # 默认安装到全局python环境
+            UV_SYSTEM_PYTHON: 1
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
@@ -35,7 +36,7 @@ jobs:
                   cache-dependency-path: web/pnpm-lock.yaml
             - name: 安装后端依赖
               working-directory: client
-              run: uv sync
+              run: uv pip install -r requirements.txt
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
