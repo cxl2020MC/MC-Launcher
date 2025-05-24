@@ -53,9 +53,9 @@ jobs:
               working-directory: web
               run: pnpm install
             
-            - name: 构建前端
-              working-directory: web
-              run: pnpm build
+            # - name: 构建前端
+            #   working-directory: web
+            #   run: pnpm build
             
             - name: 构建二进制文件
               working-directory: client
