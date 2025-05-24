@@ -35,6 +35,17 @@ jobs:
                   cache-dependency-path: web/pnpm-lock.yaml
             # - name: 安装Nuitka
             #   run: uv tool install nuitka
+            - name: 设置 Nuitka 环境变量
+              run: |
+                  echo "NUITKA_CACHE_DIR=${{ github.action_path }}/nuitka/cache" >> $GITHUB_ENV
+            - name: 缓存 Nuitka
+              uses: actions/cache@v3
+              with:
+                  path: |
+                    ${{ github.action_path }}/nuitka/cache
+                  key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ hashFiles('**/nuitka/cache') }}
+                  restore-keys: |
+                    ${{ runner.os }}-${{ runner.arch }}-nuitka-
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
@@ -42,6 +53,8 @@ jobs:
               if: matrix.os == 'ubuntu-latest'
               working-directory: client
               run: |
+                  sudo apt update
+                  sudo apt install -y ccache
                   uv remove pywebview
                   uv add pywebview[pyside6]
             - name: 安装 MacOS 额外依赖
