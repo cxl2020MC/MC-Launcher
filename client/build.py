@@ -10,8 +10,6 @@ if platform.system() != 'Windows':
     print("关闭shell=True")
     shell = False
 
-
-
 print(f'当前工作目录：{os.getcwd()}')
 
 print('切换工作目录到web')
