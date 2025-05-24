@@ -44,6 +44,11 @@ jobs:
               run: |
                   uv remove pywebview
                   uv add pywebview[pyside6]
+            - name: 安装 MacOS 额外依赖
+              if: matrix.os == 'macos-latest'
+              working-directory: client
+              run: |
+                  uv add pyobjc-core pyobjc-framework-Cocoa pyobjc-framework-Qurity pyobjc-framework-WebKit pyobjc-framework-security
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
