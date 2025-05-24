@@ -43,7 +43,7 @@ jobs:
               run: |
                 sudo apt update -y
                 sudo apt install -y ccache
-                uv add pywebview[gtk]
+                uv add pywebview[pyside6]
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
