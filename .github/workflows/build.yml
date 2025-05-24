@@ -42,7 +42,6 @@ jobs:
               if: matrix.os == 'ubuntu-latest'
               working-directory: client
               run: |
-                  sudo apt update
                   uv remove pywebview
                   uv add pywebview[pyside6]
             - name: 安装前端依赖
