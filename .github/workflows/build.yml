@@ -43,7 +43,7 @@ jobs:
               working-directory: client
               run: |
                   uv remove pywebview
-                  uv add pywebview[pyside6]
+                  uv add pywebview[qt]
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
