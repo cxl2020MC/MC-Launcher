@@ -40,7 +40,7 @@ jobs:
             - name: 缓存 Nuitka
               uses: actions/cache@v3
               with:
-                  path: cilent/${{ env.NUITKA_CACHE_DIR }}
+                  path: client/${{ env.NUITKA_CACHE_DIR }}
                   key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
                   restore-keys: |
                     ${{ runner.os }}-${{ runner.arch }}-nuitka-
