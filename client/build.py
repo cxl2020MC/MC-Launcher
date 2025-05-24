@@ -4,11 +4,7 @@ import subprocess
 import platform
 
 
-shell = True
 print('当前操作系统：', platform.system())
-if platform.system() != 'Windows':
-    print("关闭shell=True")
-    shell = False
 
 print(f'当前工作目录：{os.getcwd()}')
 
@@ -30,11 +26,10 @@ print(f'当前工作目录：{os.getcwd()}')
 print('开始构建客户端')
 
 
-bulid_commend = ['nuitka', '--onefile', 'app.py',
-                 '--include-data-dir=../web/dist=dist', '--output-dir=nuitka_dist', '--remove-output', '--assume-yes-for-downloads']
+bulid_commend = "nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads"
 if platform.system() == 'Darwin':
-    bulid_commend.append('--macos-create-app-bundle')
-subprocess.run(bulid_commend, shell=shell)
+    bulid_commend += '--macos-create-app-bundle'
+subprocess.run(bulid_commend, shell=True)
 # subprocess.run(['nuitka', '--mode=standalone', 'app.py', '--include-data-dir=../web/dist=dist'], shell=True)
 
 
