@@ -34,9 +34,8 @@ jobs:
                   cache: "pnpm"
                   cache-dependency-path: web/pnpm-lock.yaml
             - name: 安装后端依赖
-              run: |
-                  cd client
-                  uv sync
+              working-directory: client
+              run: uv sync
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
