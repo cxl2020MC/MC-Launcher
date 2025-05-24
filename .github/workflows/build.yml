@@ -36,7 +36,7 @@ jobs:
                   cache-dependency-path: web/pnpm-lock.yaml
             - name: 安装后端依赖
               working-directory: client
-              run: uv pip install -r requirements.txt
+              run: uv sync
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
