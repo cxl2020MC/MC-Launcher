@@ -21,10 +21,10 @@ jobs:
               uses: astral-sh/setup-uv@v5
               with:
                   enable-cache: true
-            # - name: 设置 Python
-            #   run: uv python install
             - name: 安装 Python
               uses: actions/setup-python@v3
+            # - name: 设置 Python
+            #   run: uv python install
             - name: 安装 pnpm
               uses: pnpm/action-setup@v4
               with:
@@ -36,8 +36,8 @@ jobs:
                   node-version: latest
                   cache: "pnpm"
                   cache-dependency-path: web/pnpm-lock.yaml
-            - name: 安装Nuitka
-              run: uv tool install nuitka
+            # - name: 安装Nuitka
+            #   run: uv tool install nuitka
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
@@ -58,8 +58,8 @@ jobs:
             
             - name: 构建二进制文件
               working-directory: client
-              # run: uv run build.py
-              run: nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
+              run: uv run build.py
+              # run: nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
 
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
