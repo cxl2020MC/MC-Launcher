@@ -19,22 +19,13 @@ print(f'当前工作目录：{os.getcwd()}')
 
 print('开始构建前端')
 
-subprocess.run(['pnpm', 'build'], shell=shell)
+subprocess.run("pnpm build", shell=True)
 
 print('切换工作目录到client')
 
 os.chdir('../client')
 print(f'当前工作目录：{os.getcwd()}')
 
-print('删除旧的前端文件')
-
-shutil.rmtree('dist', ignore_errors=True)
-
-# print('复制前端文件到客户端')
-
-# shutil.copytree('../web/dist', 'dist', dirs_exist_ok=True)
-
-# print('复制完成')
 
 print('开始构建客户端')
 
@@ -48,6 +39,3 @@ subprocess.run(bulid_commend, shell=shell)
 
 
 print('构建完成')
-# print('删除前端文件')
-
-# shutil.rmtree('dist', ignore_errors=True)
