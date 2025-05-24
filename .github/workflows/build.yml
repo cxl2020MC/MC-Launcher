@@ -40,7 +40,10 @@ jobs:
             - name: 安装后端Linux特定依赖
               if: matrix.os == 'ubuntu-latest'
               working-directory: client
-              run: uv add pywebview[qt]
+              run: |
+                apt update -y
+                apt install -y ccache
+                uv add pywebview[gtk]
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
