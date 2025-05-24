@@ -41,8 +41,8 @@ jobs:
             - name: 缓存 Nuitka
               uses: actions/cache@v3
               with:
-                  path: |
-                    ${{ github.action_path }}/nuitka/cache
+                  path: ${{ github.action_path }}/nuitka/cache 
+                  # ${{ env.NUITKA_CACHE_DIR }}
                   key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ hashFiles('**/nuitka/cache') }}
                   restore-keys: |
                     ${{ runner.os }}-${{ runner.arch }}-nuitka-
