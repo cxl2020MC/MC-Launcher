@@ -45,6 +45,8 @@ bulid_commend = ['nuitka', '--onefile', 'app.py',
                  '--include-data-dir=../web/dist=dist', '--output-dir=nuitka_dist', '--remove-output', '--assume-yes-for-downloads']
 if platform.system() == 'Darwin':
     bulid_commend.append('--macos-create-app-bundle')
+elif platform.system() == 'Linux':
+    bulid_commend.append('--enable-plugin=pyside6')
 subprocess.run(bulid_commend, shell=shell)
 # subprocess.run(['nuitka', '--mode=standalone', 'app.py', '--include-data-dir=../web/dist=dist'], shell=True)
 
