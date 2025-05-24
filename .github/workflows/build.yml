@@ -9,9 +9,6 @@ jobs:
         runs-on: ${{ matrix.os }}
         env:
             PYTHONIOENCODING: utf-8
-            # LC_ALL: zh_CN.UTF-8
-            # NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
-            NUITKA_CACHE_DIR: ./_temp/nuitka/cache
             # 默认安装到全局python环境
             UV_SYSTEM_PYTHON: 1
         steps:
@@ -41,20 +38,19 @@ jobs:
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
+            - name: 安装 Linux 额外依赖
+              if: matrix.os == 'ubuntu-latest'
+              working-directory: client
+              run: |
+                  uv remove pywebview
+                  uv add pywebview[gtk]
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
+            
             - name: 构建前端
               working-directory: web
               run: pnpm build
-            - name: 缓存Nuitka缓存
-              uses: actions/cache@v4
-              with:
-                  path: ${{ env.NUITKA_CACHE_DIR }}
-                  key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
-                  restore-keys: |
-                      ${{ runner.os }}-${{ runner.arch }}-nuitka-
-                      ${{ runner.os }}-${{ runner.arch }}-
             
             - name: 构建二进制文件
               working-directory: client
