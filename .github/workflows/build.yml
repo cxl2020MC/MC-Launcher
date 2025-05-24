@@ -43,7 +43,7 @@ jobs:
               working-directory: client
               run: |
                   sudo apt update
-                  sudo apt-get install libcairo2-dev pkg-config libgirepository1.0-dev gobject-introspection
+                  sudo apt-get install libcairo2-dev pkg-config libgirepository1.0-dev libglib2.0-dev gobject-introspection
                   uv remove pywebview
                   uv add pywebview[gtk]
             - name: 安装前端依赖
