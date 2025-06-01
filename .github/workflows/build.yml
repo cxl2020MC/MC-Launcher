@@ -51,8 +51,8 @@ jobs:
               if: matrix.os == 'ubuntu-latest'
               working-directory: client
               run: |
-                  sudo apt update
-                  sudo apt install -y ccache
+                  sudo apt-get update
+                  sudo apt-get install -y ccache
                   uv remove pywebview
                   uv add pywebview[pyside6]
             - name: 安装 MacOS 额外依赖
@@ -70,7 +70,7 @@ jobs:
             
             - name: 构建二进制文件
               working-directory: client
-              run: uv run build.py
+              run: ./build.sh
               # run: nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
 
             - name: 上传构建产物
