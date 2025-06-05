@@ -26,11 +26,11 @@ print(f'当前工作目录：{os.getcwd()}')
 print('开始构建客户端')
 
 
-bulid_commend = "nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads"
+bulid_commend = "nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads  --lto=yes"
 if platform.system() == 'Darwin':
     bulid_commend += " --macos-create-app-bundle"
 elif platform.system() == 'Linux':
-    bulid_commend += " --enable-plugin=pyside6 --lto=yes"
+    bulid_commend += " --enable-plugin=pyside6"
 subprocess.run(bulid_commend, shell=True)
 # subprocess.run(['nuitka', '--mode=standalone', 'app.py', '--include-data-dir=../web/dist=dist'], shell=True)
 
