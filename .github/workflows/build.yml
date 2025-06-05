@@ -52,7 +52,7 @@ jobs:
               working-directory: client
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y ccache
+                  sudo apt-get install -y ccache libxml2
                   uv remove pywebview
                   uv add pywebview[pyside6]
             - name: 安装 MacOS 额外依赖
