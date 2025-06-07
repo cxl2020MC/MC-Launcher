@@ -27,12 +27,13 @@ logger.debug(f"前端目录: {web_dist_dir}")
 
 web_url = str(web_dist_dir)
 
-config = asyncio.run(config.load_config())
+config_data = asyncio.run(config.load_config())
 
 
-if config.dev:
-    logger.info("开发模式")
+if config_data.dev:
+    logger.info("开发模式已启用!")
     web_url = 'http://localhost:5173'
+    logger.info(f"设置URL为 {web_url}")
 
 def main(window):
     pass
@@ -40,5 +41,5 @@ def main(window):
 window = webview.create_window('AG Launcher', web_url)
 
 
-webview.start(main, args=[window], debug=True)
+webview.start(main, args=[window], debug=config_data.debug)
 
