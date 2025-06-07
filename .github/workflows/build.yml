@@ -19,10 +19,12 @@ jobs:
               uses: astral-sh/setup-uv@v5
               with:
                   enable-cache: true
-            - name: 安装 Python
-              uses: actions/setup-python@v3
-            # - name: 设置 Python
-            #   run: uv python install
+            
+            # - name: 安装 Python
+            #   uses: actions/setup-python@v3
+            - name: 使用 uv 安装 Python
+              run: uv python install
+
             - name: 安装 pnpm
               uses: pnpm/action-setup@v4
               with:
@@ -44,6 +46,7 @@ jobs:
                   key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
                   restore-keys: |
                     ${{ runner.os }}-${{ runner.arch }}-nuitka-
+            
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
