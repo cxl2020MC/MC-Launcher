@@ -4,6 +4,8 @@ import sys
 import pathlib
 import platform
 from core import config
+from core.log import logger
+import asyncio
 
 print(f"Python版本: {platform.python_version()}")
 
@@ -25,15 +27,16 @@ print(f"前端目录: {web_dist_dir}")
 
 web_url = str(web_dist_dir)
 
-# debug = True
-debug = False
 
-if debug:
+config = asyncio.run(config.load_config())
+
+
+if config.dev:
+    logger.info("开发模式")
     web_url = 'http://localhost:5173'
 
 def main(window):
-    # window.evaluate_js("alert('Hello World!')")
-    window.run_js("alert('Hello World!')")
+    pass
 
 window = webview.create_window('AG Launcher', web_url)
 

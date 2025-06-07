@@ -2,3 +2,4 @@ app.*/
 *.exe
 dist/
 nuitka_dict/
+# __pycache__/
