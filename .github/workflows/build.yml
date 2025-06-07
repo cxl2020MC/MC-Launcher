@@ -10,7 +10,7 @@ jobs:
         env:
             PYTHONIOENCODING: utf-8
             # 默认安装到全局python环境
-            UV_SYSTEM_PYTHON: 1
+            # UV_SYSTEM_PYTHON: 1
             NUITKA_CACHE_DIR: ~/_temp/nuitka/cache
         steps:
             - name: 检出仓库代码
@@ -81,4 +81,5 @@ jobs:
                     client/nuitka_dist/
                   include-hidden-files: true
             - name: 显示目录树
+              if: matrix.os == 'ubuntu-latest'
               run: tree
