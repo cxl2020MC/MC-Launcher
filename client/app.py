@@ -35,10 +35,13 @@ if config_data.dev:
     web_url = 'http://localhost:5173'
     logger.info(f"设置URL为 {web_url}")
 
+def test():
+    print("test")
+    return "test"
 
 def main(window: webview.Window, config_data: config.Config):
-    pass
-    # window.expose(test)
+    # pass
+    window.expose(test)
 
 
 if __name__ == '__main__':
