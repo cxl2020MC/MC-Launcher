@@ -11,7 +11,7 @@ jobs:
             PYTHONIOENCODING: utf-8
             # 默认安装到全局python环境
             UV_SYSTEM_PYTHON: 1
-            NUITKA_CACHE_DIR: _temp/nuitka/cache
+            NUITKA_CACHE_DIR: ~/_temp/nuitka/cache
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
             - name: 缓存 Nuitka
               uses: actions/cache@v3
               with:
-                  path: client/${{ env.NUITKA_CACHE_DIR }}
+                  path: ${{ env.NUITKA_CACHE_DIR }}
                   key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
                   restore-keys: |
                     ${{ runner.os }}-${{ runner.arch }}-nuitka-
