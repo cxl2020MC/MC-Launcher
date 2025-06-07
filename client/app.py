@@ -7,26 +7,25 @@ from core import config
 from core.log import logger
 import asyncio
 
-print(f"Python版本: {platform.python_version()}")
+logger.debug(f"Python版本: {platform.python_version()}")
 
-print(f"执行Python文件: {__file__}")
+logger.debug(f"执行Python文件: {__file__}")
 # 获取单文件缓存文件夹
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 current_dir = os.path.dirname(__file__)
-print(f"当前目录: {current_dir}")
+logger.debug(f"当前目录: {current_dir}")
 
-print(f"当前程序二进制文件: {sys.executable}")
+logger.debug(f"当前程序二进制文件: {sys.executable}")
 
 # 获取当前工作目录
 current_work_dir = os.getcwd()
-print(f"当前工作目录: {current_work_dir}")
+logger.debug(f"当前工作目录: {current_work_dir}")
 
 # 拼接前端目录
 web_dist_dir = pathlib.Path(current_dir).joinpath('dist').joinpath('index.html')
-print(f"前端目录: {web_dist_dir}")
+logger.debug(f"前端目录: {web_dist_dir}")
 
 web_url = str(web_dist_dir)
-
 
 config = asyncio.run(config.load_config())
 

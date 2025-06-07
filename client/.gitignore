@@ -1,5 +1,11 @@
+# nuitka
 app.*/
 *.exe
 dist/
 nuitka_dict/
-# __pycache__/
+# python
+__pycache__/
+
+# data
+config/
+log/
