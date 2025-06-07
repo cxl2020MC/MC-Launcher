@@ -11,4 +11,5 @@ dependencies = [
     "nuitka",
     "pydantic",
     "pywebview",
+    "yarl>=1.20.0",
 ]
