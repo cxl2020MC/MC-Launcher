@@ -1,5 +1,6 @@
 import asyncio
 import threading
+from . import mcdownload
 
 
 async def async_test():
