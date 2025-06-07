@@ -53,7 +53,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: ${{ env.NUITKA_CACHE_DIR }}
-                  key: -nuitka-cache-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+                  key: nuitka-cache-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
                   restore-keys: |
                       nuitka-cache-${{ runner.os }}-${{ runner.arch }}-
 
