@@ -35,11 +35,13 @@ if config_data.dev:
     web_url = 'http://localhost:5173'
     logger.info(f"设置URL为 {web_url}")
 
-def main(window, config_data: config.Config):
+
+def main(window: webview.Window, config_data: config.Config):
     pass
+    # window.expose(test)
 
-window = webview.create_window('AG Launcher', web_url)
 
+if __name__ == '__main__':
+    window = webview.create_window('AG Launcher', web_url)
 
-webview.start(main, args=[window, config_data], debug=config_data.debug)
-
+    webview.start(main, args=[window, config_data], debug=config_data.debug)
