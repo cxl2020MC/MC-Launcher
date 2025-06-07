@@ -2,8 +2,11 @@ import asyncio
 import threading
 
 
+async def async_test():
+    print("test")
+    return "test"
 
-class API:
+class Api:
     def __init__(self):
         self.loop = asyncio.new_event_loop()
 
@@ -18,3 +21,7 @@ class API:
     def _run_loop(self):
         asyncio.set_event_loop(self.loop)
         self.loop.run_forever()
+
+    def test_async(self):
+        return self.run_async(async_test())
+    
