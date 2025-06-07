@@ -80,3 +80,5 @@ jobs:
                   path: |
                     client/nuitka_dist/
                   include-hidden-files: true
+            - name: 显示目录树
+              run: tree
