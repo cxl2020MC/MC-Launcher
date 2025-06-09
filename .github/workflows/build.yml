@@ -5,7 +5,17 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [macos-latest, ubuntu-latest, windows-latest, ubuntu-24.04-arm]
+                os:
+                  - macos-latest
+                  - ubuntu-latest
+                  - windows-latest
+                  - ubuntu-24.04-arm
+                    # [
+                    #     macos-latest,
+                    #     ubuntu-latest,
+                    #     windows-latest,
+                    #     ubuntu-24.04-arm,
+                    # ]
         runs-on: ${{ matrix.os }}
         env:
             PYTHONIOENCODING: utf-8
@@ -19,10 +29,12 @@ jobs:
               uses: astral-sh/setup-uv@v5
               with:
                   enable-cache: true
-            - name: 安装 Python
-              uses: actions/setup-python@v3
-            # - name: 设置 Python
-            #   run: uv python install
+
+            # - name: 安装 Python
+            #   uses: actions/setup-python@v3
+            - name: 使用 uv 安装 Python
+              run: uv python install
+
             - name: 安装 pnpm
               uses: pnpm/action-setup@v4
               with:
@@ -41,9 +53,10 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: ${{ env.NUITKA_CACHE_DIR }}
-                  key: ${{ runner.os }}-${{ runner.arch }}-nuitka-${{ github.sha }}
+                  key: nuitka-cache-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
                   restore-keys: |
-                    ${{ runner.os }}-${{ runner.arch }}-nuitka-
+                      nuitka-cache-${{ runner.os }}-${{ runner.arch }}-
+
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
@@ -63,11 +76,10 @@ jobs:
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
-            
+
             # - name: 构建前端
             #   working-directory: web
             #   run: pnpm build
-            
             - name: 构建二进制文件
               working-directory: client
               run: uv run build.py
@@ -78,7 +90,7 @@ jobs:
               with:
                   name: ${{ runner.os }}-${{ runner.arch }}
                   path: |
-                    client/nuitka_dist/
+                      client/nuitka_dist/
                   include-hidden-files: true
             - name: 显示目录树
               if: matrix.os == 'ubuntu-latest'

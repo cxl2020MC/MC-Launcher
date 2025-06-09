@@ -3,9 +3,12 @@ import os
 import sys
 import pathlib
 import platform
-from core import config
-from core.log import logger
 import asyncio
+
+from core.log import logger
+from core import config
+from core.js_api import Api
+
 
 logger.debug(f"Python版本: {platform.python_version()}")
 
@@ -35,16 +38,13 @@ if config_data.dev:
     web_url = 'http://localhost:5173'
     logger.info(f"设置URL为 {web_url}")
 
-def test():
-    print("test")
-    return "test"
-
 def main(window: webview.Window, config_data: config.Config):
-    # pass
-    window.expose(test)
+    pass
 
 
 if __name__ == '__main__':
-    window = webview.create_window('AG Launcher', web_url)
+    js_api = Api()
+    js_api.start_loop()
+    window = webview.create_window('AG Launcher', web_url, js_api=js_api)
 
     webview.start(main, args=[window, config_data], debug=config_data.debug)
