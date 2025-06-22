@@ -38,5 +38,7 @@ app = FastAPI()
 app.mount('/', StaticFiles(directory=web_dist_dir.parent))
 
 if __name__ == '__main__':
+    import webbrowser
     import uvicorn
+    webbrowser.open_new_tab("http://localhost:8000/index.html")
     uvicorn.run(app, host="0.0.0.0", port=8000)
