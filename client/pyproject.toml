@@ -7,9 +7,8 @@ requires-python = ">=3.13"
 dependencies = [
     "aiofiles",
     "aiohttp[speedups]",
-    "loguru>=0.7.3",
+    "loguru",
     "nuitka",
     "pydantic",
-    "pywebview",
-    "yarl>=1.20.0",
+    "yarl",
 ]

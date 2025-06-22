@@ -1,4 +1,4 @@
-import webview
+# import webview
 import os
 import sys
 import pathlib
@@ -35,16 +35,9 @@ config_data = asyncio.run(config.load_config())
 
 if config_data.dev:
     logger.info("开发模式已启用!")
-    web_url = 'http://localhost:5173'
-    logger.info(f"设置URL为 {web_url}")
 
-def main(window: webview.Window, config_data: config.Config):
-    pass
 
 
 if __name__ == '__main__':
     js_api = Api()
     js_api.start_loop()
-    window = webview.create_window('AG Launcher', web_url, js_api=js_api)
-
-    webview.start(main, args=[window, config_data], debug=config_data.debug)
