@@ -35,7 +35,7 @@ if config_data.dev:
     logger.info("开发模式已启用!")
 
 app = FastAPI()
-app.mount('/', StaticFiles(directory=web_dist_dir.parent))
+app.mount('/', StaticFiles(directory=web_dist_dir.parent, html=True))
 
 if __name__ == '__main__':
     import webbrowser
