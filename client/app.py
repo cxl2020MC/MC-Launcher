@@ -3,6 +3,9 @@ import platform
 import asyncio
 from pathlib import Path
 
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+
 from core.log import logger
 from core import config
 
@@ -31,6 +34,9 @@ config_data = asyncio.run(config.load_config())
 if config_data.dev:
     logger.info("开发模式已启用!")
 
+app = FastAPI()
+app.mount('/', StaticFiles(directory=web_dist_dir.parent))
 
 if __name__ == '__main__':
-    pass
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -7,8 +7,10 @@ requires-python = ">=3.13"
 dependencies = [
     "aiofiles",
     "aiohttp[speedups]",
+    "fastapi>=0.115.13",
     "loguru",
     "nuitka",
     "pydantic",
+    "uvicorn[standard]>=0.34.3",
     "yarl",
 ]
