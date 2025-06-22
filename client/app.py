@@ -1,5 +1,3 @@
-# import webview
-import os
 import sys
 import platform
 import asyncio
@@ -14,7 +12,6 @@ logger.debug(f"Python版本: {platform.python_version()}")
 logger.debug(f"执行Python文件: {__file__}")
 
 # 获取单文件缓存文件夹
-# current_dir = os.path.dirname(__file__)
 current_dir = Path(__file__).parent.resolve()
 logger.debug(f"当前目录: {current_dir}")
 
