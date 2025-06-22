@@ -38,5 +38,4 @@ if config_data.dev:
 
 
 if __name__ == '__main__':
-    js_api = Api()
-    js_api.start_loop()
+    pass
