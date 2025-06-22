@@ -18,7 +18,7 @@ jobs:
                     # ]
         runs-on: ${{ matrix.os }}
         env:
-            # PYTHONIOENCODING: utf-8
+            PYTHONIOENCODING: utf-8
             # 默认安装到全局python环境
             # UV_SYSTEM_PYTHON: 1
             NUITKA_CACHE_DIR: ~/_temp/nuitka/cache
@@ -30,10 +30,6 @@ jobs:
               uses: astral-sh/setup-uv@v5
               with:
                   enable-cache: true
-
-            - name: 设置 Windows 系统终端编码为 UTF-8
-              if: matrix.os == 'windows-latest'
-              run: chcp 65001
 
             # - name: 安装 Python
             #   uses: actions/setup-python@v3
