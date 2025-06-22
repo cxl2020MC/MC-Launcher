@@ -25,10 +25,15 @@ jobs:
         steps:
             - name: 检出仓库代码
               uses: actions/checkout@v4
+
             - name: 安装 uv
               uses: astral-sh/setup-uv@v5
               with:
                   enable-cache: true
+
+            - name: 设置 Windows 系统终端编码为 UTF-8
+              if: matrix.os == 'windows-latest'
+              run: chcp 65001
 
             # - name: 安装 Python
             #   uses: actions/setup-python@v3
@@ -46,8 +51,6 @@ jobs:
                   node-version: latest
                   cache: "pnpm"
                   cache-dependency-path: web/pnpm-lock.yaml
-            # - name: 安装Nuitka
-            #   run: uv tool install nuitka
 
             - name: 缓存 Nuitka
               uses: actions/cache@v3
@@ -66,6 +69,7 @@ jobs:
               run: |
                   sudo apt-get update
                   sudo apt-get install -y ccache libxml2
+            
             - name: 安装前端依赖
               working-directory: web
               run: pnpm install
