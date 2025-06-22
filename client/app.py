@@ -7,7 +7,6 @@ import asyncio
 
 from core.log import logger
 from core import config
-from core.js_api import Api
 
 
 logger.debug(f"Python版本: {platform.python_version()}")
