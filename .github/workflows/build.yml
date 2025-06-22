@@ -18,7 +18,7 @@ jobs:
                     # ]
         runs-on: ${{ matrix.os }}
         env:
-            PYTHONIOENCODING: utf-8
+            # PYTHONIOENCODING: utf-8
             # 默认安装到全局python环境
             # UV_SYSTEM_PYTHON: 1
             NUITKA_CACHE_DIR: ~/_temp/nuitka/cache
