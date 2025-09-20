@@ -9,6 +9,9 @@ from fastapi.staticfiles import StaticFiles
 from core.log import logger
 from core import config
 
+# nuitka-project: --onefile --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
+# nuitka-project-if: {OS} in ("Darwin"):
+#    nuitka-project: --macos-create-app-bundle
 
 logger.debug(f"Python版本: {platform.python_version()}")
 

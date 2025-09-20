@@ -70,13 +70,13 @@ jobs:
               working-directory: web
               run: pnpm install
 
-            # - name: 构建前端
-            #   working-directory: web
-            #   run: pnpm build
+            - name: 构建前端
+              working-directory: web
+              run: pnpm build
             - name: 构建二进制文件
               working-directory: client
-              run: uv run build.py
-              # run: nuitka --onefile app.py --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
+              # run: uv run build.py
+              run: nuitka app.py
 
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
