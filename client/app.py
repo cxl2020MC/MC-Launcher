@@ -9,7 +9,11 @@ from fastapi.staticfiles import StaticFiles
 from core.log import logger
 from core import config
 
-# nuitka-project: --onefile --include-data-dir=../web/dist=dist --output-dir=nuitka_dist --remove-output --assume-yes-for-downloads
+# nuitka-project: --onefile
+# nuitka-project: --include-data-dir=../web/dist=dist
+# nuitka-project: --output-dir=nuitka_dist
+# nuitka-project: --remove-output
+# nuitka-project: --assume-yes-for-downloads
 # nuitka-project-if: {OS} in ("Darwin"):
 #    nuitka-project: --macos-create-app-bundle
 
