@@ -18,6 +18,7 @@ from core import config
 #    nuitka-project: --macos-create-app-bundle
 
 logger.debug(f"Python版本: {platform.python_version()}")
+logger.debug(f"详细Python版本: {sys.version}")
 
 logger.debug(f"执行Python文件: {__file__}")
 
