@@ -76,7 +76,7 @@ jobs:
             - name: 构建二进制文件
               working-directory: client
               # run: uv run build.py
-              run: nuitka app.py
+              run: uv run nuitka app.py
 
             - name: 上传构建产物
               uses: actions/upload-artifact@v4
