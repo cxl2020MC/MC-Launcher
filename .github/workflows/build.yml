@@ -1,4 +1,4 @@
-name: 构建二进制文件
+name: 构建可执行文件
 on: [push]
 jobs:
     build:
