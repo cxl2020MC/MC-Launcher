@@ -26,8 +26,6 @@ jobs:
               with:
                   enable-cache: true
 
-            # - name: 安装 Python
-            #   uses: actions/setup-python@v3
             - name: 使用 uv 安装 Python
               run: uv python install
 
@@ -36,6 +34,7 @@ jobs:
               with:
                   version: latest
                   run_install: false
+            
             - name: 设置 Node.js
               uses: actions/setup-node@v4
               with:
@@ -68,18 +67,32 @@ jobs:
             - name: 构建前端
               working-directory: web
               run: pnpm build
-            - name: 构建二进制文件
+            
+            - name: 使用 PyInstaller 构建二进制文件
+              working-directory: client
+              run: uv run pyinstaller app.py --onefile --distpath ./pyinstaller_dist --add-data "../web/dist/:dist"
+
+            - name: 上传 PyInstaller 构建产物
+              uses: actions/upload-artifact@v4
+              with:
+                  name: PyInstaller-${{ runner.os }}-${{ runner.arch }}
+                  path: |
+                      client/pyinstaller_dist/
+                  include-hidden-files: true
+
+            - name: 使用 Nuitka 构建二进制文件
               working-directory: client
               # run: uv run build.py
               run: uv run nuitka app.py
 
-            - name: 上传构建产物
+            - name: 上传 Nuitka 构建产物
               uses: actions/upload-artifact@v4
               with:
-                  name: ${{ runner.os }}-${{ runner.arch }}
+                  name: Nuitka-${{ runner.os }}-${{ runner.arch }}
                   path: |
                       client/nuitka_dist/
                   include-hidden-files: true
+            
             - name: 显示目录树
               if: matrix.os == 'ubuntu-latest'
               run: tree
