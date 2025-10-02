@@ -10,9 +10,9 @@ jobs:
                   - ubuntu-latest
                   - windows-latest
                   - ubuntu-24.04-arm
-                # build:
-                #   - nuitka
-                #   - pyinstaller
+                build:
+                  - nuitka
+                  - pyinstaller
         runs-on: ${{ matrix.os }}
         env:
             PYTHONIOENCODING: utf-8
@@ -43,6 +43,7 @@ jobs:
                   cache-dependency-path: web/pnpm-lock.yaml
 
             - name: 缓存 Nuitka
+              if: matrix.build == 'nuitka'
               uses: actions/cache@v3
               with:
                   path: ${{ env.NUITKA_CACHE_DIR }}
@@ -53,8 +54,8 @@ jobs:
             - name: 安装后端依赖
               working-directory: client
               run: uv sync
-            - name: 安装 Linux 额外依赖
-              if: runner.os == 'Linux'
+            - name: 安装 Nuitka Linux 额外依赖
+              if: runner.os == 'Linux' && matrix.build == 'nuitka'
               working-directory: client
               run: |
                   sudo apt-get update
@@ -69,10 +70,12 @@ jobs:
               run: pnpm build
             
             - name: 使用 PyInstaller 构建二进制文件
+              if: matrix.build == 'pyinstaller'
               working-directory: client
               run: uv run pyinstaller app.py --onefile --distpath ./pyinstaller_dist --add-data "../web/dist/:dist"
 
             - name: 上传 PyInstaller 构建产物
+              if: matrix.build == 'pyinstaller'
               uses: actions/upload-artifact@v4
               with:
                   name: PyInstaller-${{ runner.os }}-${{ runner.arch }}
@@ -81,11 +84,13 @@ jobs:
                   include-hidden-files: true
 
             - name: 使用 Nuitka 构建二进制文件
+              if: matrix.build == 'nuitka'
               working-directory: client
               # run: uv run build.py
               run: uv run nuitka app.py
 
             - name: 上传 Nuitka 构建产物
+              if: matrix.build == 'nuitka'
               uses: actions/upload-artifact@v4
               with:
                   name: Nuitka-${{ runner.os }}-${{ runner.arch }}
