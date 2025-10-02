@@ -10,17 +10,12 @@ jobs:
                   - ubuntu-latest
                   - windows-latest
                   - ubuntu-24.04-arm
-                    # [
-                    #     macos-latest,
-                    #     ubuntu-latest,
-                    #     windows-latest,
-                    #     ubuntu-24.04-arm,
-                    # ]
+                # build:
+                #   - nuitka
+                #   - pyinstaller
         runs-on: ${{ matrix.os }}
         env:
             PYTHONIOENCODING: utf-8
-            # 默认安装到全局python环境
-            # UV_SYSTEM_PYTHON: 1
             NUITKA_CACHE_DIR: ~/_temp/nuitka/cache
         steps:
             - name: 检出仓库代码
@@ -60,7 +55,7 @@ jobs:
               working-directory: client
               run: uv sync
             - name: 安装 Linux 额外依赖
-              if: matrix.os == 'ubuntu-latest' || matrix.os == 'ubuntu-24.04-arm'
+              if: runner.os == 'Linux'
               working-directory: client
               run: |
                   sudo apt-get update
